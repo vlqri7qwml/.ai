@@ -1,0 +1,23 @@
+{
+  "name": "ai-chat-notes",
+  "author": "vlqri7qwml",
+  "url": "https://github.com/vlqri7qwml/.ai",
+  "version": "0.1.0",
+  "minAppVersion": "3.8.0",
+  "backends": ["all"],
+  "frontends": ["all"],
+  "displayName": {
+    "default": "AI Chat Notes",
+    "zh_CN": "AI 对话笔记"
+  },
+  "description": {
+    "default": "Paste or import conversations from Claude, ChatGPT, Gemini, DeepSeek and more, shown in the native claude.ai style; local-only mode",
+    "zh_CN": "粘贴或导入 Claude、ChatGPT、Gemini、DeepSeek 等网页对话，按 claude.ai 原生样式显示；本地模式"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh_CN": "README.md"
+  },
+  "funding": {},
+  "keywords": ["claude", "chatgpt", "deepseek", "gemini", "ai", "conversation", "import", "对话", "导入"]
+}

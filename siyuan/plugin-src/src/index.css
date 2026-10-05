@@ -1,0 +1,179 @@
+/*
+ * AI 对话笔记：对话块按 claude.ai 原生样式显示。
+ * 颜色与字体通过 --acn-* 变量提供，搭配「Claude 风格」主题时由主题覆盖，其他主题使用这里的默认值。
+ */
+:root {
+    --acn-user-bg: #F0EEE7;
+    --acn-user-color: var(--b3-theme-on-background);
+    --acn-user-font: var(--b3-font-family);
+    --acn-assistant-font: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia,
+    "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, serif;
+    --acn-assistant-color: var(--b3-theme-on-background);
+    --acn-thinking-color: var(--b3-theme-on-surface);
+    --acn-accent: #D97757;
+}
+
+html[data-theme-mode="dark"] {
+    --acn-user-bg: #121212;
+}
+
+/* ---------- 对话块 ---------- */
+
+.protyle-wysiwyg [data-node-id][custom-chat-role] {
+    border-radius: 16px;
+}
+
+.protyle-wysiwyg [data-node-id][custom-chat-role="user"] {
+    width: fit-content;
+    max-width: 85%;
+    min-width: 48px;
+    margin: 20px 0 8px auto;
+    padding: 10px 14px;
+    box-sizing: border-box;
+    background-color: var(--acn-user-bg);
+    color: var(--acn-user-color);
+    font-family: var(--acn-user-font);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.protyle-wysiwyg [data-node-id][custom-chat-role="user"] > [data-node-id] {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.protyle-wysiwyg [data-node-id][custom-chat-role="assistant"] {
+    margin: 8px 0 16px;
+    color: var(--acn-assistant-color);
+    font-family: var(--acn-assistant-font);
+    font-size: 16.5px;
+    line-height: 1.7;
+}
+
+.protyle-wysiwyg [data-node-id][custom-chat-role="assistant"] .code-block,
+.protyle-wysiwyg [data-node-id][custom-chat-role="user"] .code-block {
+    border-radius: 10px;
+    border: 1px solid var(--b3-border-color);
+}
+
+.protyle-wysiwyg [data-node-id][custom-chat-role="thinking"] {
+    margin: 8px 0;
+    padding: 4px 0 4px 14px;
+    border-left: 2px solid var(--b3-border-color);
+    border-radius: 0;
+    color: var(--acn-thinking-color);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ---------- 导入对话框 ---------- */
+
+.acn-import {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.acn-import__drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 28px 24px;
+    border: 1px dashed var(--b3-border-color);
+    border-radius: var(--b3-border-radius-b);
+    color: var(--b3-theme-on-surface);
+    text-align: center;
+    transition: background-color .15s, border-color .15s;
+}
+
+.acn-import__drop--over {
+    border-color: var(--b3-theme-primary);
+    background-color: var(--b3-theme-primary-lightest);
+}
+
+.acn-import__drop--compact {
+    flex-direction: row;
+    padding: 10px 16px;
+    text-align: left;
+}
+
+.acn-import__drop--compact .acn-import__icon,
+.acn-import__drop--compact .b3-label__text {
+    display: none;
+}
+
+.acn-import__icon {
+    width: 32px;
+    height: 32px;
+    color: var(--acn-accent);
+}
+
+.acn-import__toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.acn-import__list {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+}
+
+.acn-import__row {
+    gap: 8px;
+    cursor: pointer;
+}
+
+.acn-import__row input,
+.acn-import__check input:not(.b3-switch) {
+    flex-shrink: 0;
+    accent-color: var(--acn-accent);
+}
+
+.acn-import__row--existing {
+    opacity: .55;
+    cursor: default;
+}
+
+.acn-import__badge {
+    flex-shrink: 0;
+    padding: 0 6px;
+    border-radius: var(--b3-border-radius-s);
+    background-color: var(--b3-theme-surface-lighter);
+    font-size: 12px;
+}
+
+.acn-import__status {
+    white-space: pre-wrap;
+}
+
+.acn-import__check {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.acn-import__action {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.b3-label .acn-setting__dir.fn__block {
+    display: flex;
+    width: 100%;
+}
+
+/* ---------- 本地模式：隐藏云端入口 ---------- */
+
+html.acn-local-only #barSync,
+html.acn-local-only #toolbarVIP,
+html.acn-local-only .onboarding [data-type="sync"] {
+    display: none !important;
+}
